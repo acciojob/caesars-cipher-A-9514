@@ -1,46 +1,25 @@
-// Your Script here.
+function rot13(str) {
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let newStr = "";
 
-const lookup = {
-  A: "N",
-  B: "O",
-  C: "P",
-  D: "Q",
-  E: "R",
-  F: "S",
-  G: "T",
-  H: "U",
-  I: "V",
-  J: "W",
-  K: "X",
-  L: "Y",
-  M: "Z",
-  N: "A",
-  O: "B",
-  P: "C",
-  Q: "D",
-  R: "E",
-  S: "F",
-  T: "G",
-  U: "H",
-  V: "I",
-  W: "J",
-  X: "K",
-  Y: "L",
-  Z: "M",
-  "?": "?",
-  ",": ",",
-};
+  for (let i = 0; i < str.length; i++) {
+    // Assign to index the str[i] letter's alphabet index
+    let index = alphabet.indexOf(str[i]);
 
-function rot13(encodedStr) {
-  let decodedArr = []; // Your Result goes here
-  // Only change code below this line
-
-  return; //return decodedArr
+    // If indeOf returns -1 it means str[i] doesn't belong to the alphabet variable
+    if (index === -1) {
+      // Concatenate every non letters to the new string as it is
+      newStr += str[i];
+    } else {
+      // Calculate newIndex adding 13 to the real one and get the remainder of a division for 26
+      // 8 % 10 = 8
+      // 5 % 4 = 1
+      // 13 % 26 = 13
+      // 28 % 26 = 2
+      let newIndex = (index + 13) % 26;
+      // Concatenate letters with new index
+      newStr += alphabet[newIndex];
+    }
+  }
+  return newStr;
 }
-
-// You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
-
-// console.log(rot13("SERR YBIR? NPPVBWBO"));
-
-// Do not change this line
-window.rot13 = rot13;
